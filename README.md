@@ -77,19 +77,21 @@ Output: 178 aligned gene sequences (one file per gene)
 STEP 3A: CONCATENATION-BASED PHYLOGENETIC INFERENCE (IQ-TREE)
 --------------------------------------------------------------
 
-Concatenate all 178 genes, gene-by-gene for each species to reconstruct a single supermatrix
+Concatenate all 178 genes, gene-by-gene for each species to reconstruct a single supermatrix  
 Reduced datasets were also created with less genes, less species, and a subset of "good genes"
 
 For all datasets: 
 
-Run IQ-TREE with  model selection:
+**Run IQ-TREE with  model selection:**
+```bash
 iqtree -s [alignment.fasta] -m [substitution_model] -B 1000 -T AUTO -pre [output_ prefix_name]
+```
 
 Parameters:
--s: specifies input sequence alignment file in FASTA format
--m MFP: Model finder  (tests multiple models)
--B 1000: 1000 ultrafast bootstrap replicates
--T AUTO: Automatically use available CPU threads
+-s: specifies input sequence alignment file in FASTA format 
+-m MFP: Model finder  (tests multiple models)  
+-B 1000: 1000 ultrafast bootstrap replicates 
+-T AUTO: Automatically use available CPU threads 
 
 Output: 
 - .treefile: Best phylogenetic tree
