@@ -63,14 +63,14 @@ Result: 178 single-copy BUSCO genes present in all the 137 species
 STEP 2: ALIGNMENT AND TRIMMING
 --------------------------------------------
 
-Align each of the 178 orthologous BUSCO gene sets
-Perform multiple sequence alignment for each gene separately to remove poorly aligned regions
-Remove poorly aligned regions
+Align each of the 178 orthologous BUSCO gene sets. 
+Perform multiple sequence alignment for each gene separately to remove poorly aligned regions  
+Remove poorly aligned regions  
 
-Tools used: 
-MAFFT v7.526
-trimAl v1.5.rev0
-
+Tools used:   
+MAFFT v7.526  
+trimAl v1.5.rev0  
+   
 Output: 178 aligned gene sequences (one file per gene)
 
 
