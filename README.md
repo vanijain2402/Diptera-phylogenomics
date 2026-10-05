@@ -56,7 +56,7 @@ busco -i [species.genome.fasta] -l diptera_odb12 \
 -o [species_buscos] -m genome -c 6 --metaeuk
 ```
 
-Output: Single copy BUSCO genes for each species 
+Output: Single copy BUSCO genes for each species   
 Result: 178 single-copy BUSCO genes present in all the 137 species
 
 
