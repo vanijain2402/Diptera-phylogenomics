@@ -50,7 +50,7 @@ STEP 1: BUSCO GENE EXTRACTION & PREPARATION
 
 Identify and extract conserved BUSCO genes from genomic assemblies
 
-**Command template:**
+**Command line:**
 ```bash
 busco -i [species.genome.fasta] -l diptera_odb12 \
 -o [species_buscos] -m genome -c 6 --metaeuk
@@ -88,10 +88,10 @@ iqtree -s [alignment.fasta] -m [substitution_model] -B 1000 -T AUTO -pre [output
 ```
 
 Parameters:
--s: specifies input sequence alignment file in FASTA format 
--m MFP: Model finder  (tests multiple models)  
--B 1000: 1000 ultrafast bootstrap replicates 
--T AUTO: Automatically use available CPU threads 
+-s: specifies input sequence alignment file in FASTA format   
+-m MFP: Model finder  (tests multiple models)    
+-B 1000: 1000 ultrafast bootstrap replicates   
+-T AUTO: Automatically use available CPU threads   
 
 Output: 
 - .treefile: Best phylogenetic tree
@@ -104,19 +104,21 @@ STEP 3B: CONCATENATION-BASED INFERENCE (RAxML-NG)
 
 Alternative concatenation analysis for robustness testing
 
-Command line: 
+**Command line:**
+```bash
 raxml-ng --all --msa [alignment.fasta] --model [LG+F+I+G] --prefix [Diptera_phylogeny] --seed 693044 --bs-metric tbe --tree rand{1} --bs-trees 100
+```
 
-Substitution model for amino acid dataset: LG+F+I+G
-Substitution model for nucleotide dataset: GTR+I+G
+Substitution model for amino acid dataset: LG+F+I+G   
+Substitution model for nucleotide dataset: GTR+I+G  
 
-Parameters:
---msa: Species multiple sequence alignment FASTA file
---model: Substiution model
---seed 693044: Random seed selected to ensure reproducibility
---bs-trees 100: 100 bootstrap replicates
+Parameters:  
+--msa: Species multiple sequence alignment FASTA file   
+--model: Substiution model  
+--seed 693044: Random seed selected to ensure reproducibility 
+--bs-trees 100: 100 bootstrap replicates  
 
-Output:
+Output: 
 - .bestTree: Best-scoring maximum likelihood tree
 - .support: Bootstrap support values
 
@@ -124,15 +126,17 @@ Output:
 STEP 4: GENE TREE INFERENCE (INDIVIDUAL GENES)
 -----------------------------------------------
 
-Build phylogenetic tree for each individual gene (required for ASTRAL)
+Build phylogenetic tree for each individual gene (required for ASTRAL)  
 
-For each of 178 genes:
-iqtree command line was ran
+For each of 178 genes:  
+iqtree command line was ran  
 
-Collect all gene trees:
+**Collect all gene trees:**
+```bash
 cat gene_*.treefile > all_gene_trees.txt
+```
 
-Then analysis was conducted using weighted ASTRAL (wASTRAL), implemented in the package ASTER
+Then analysis was conducted using weighted ASTRAL (wASTRAL), implemented in the package ASTER  
 
 Output: 178 individual gene tree files (.treefile format)
 
@@ -152,13 +156,15 @@ STEP 6: TREE COMPARISON & TOPOLOGY ANALYSIS
 
 Compare topologies from different inference methods
 
-Calculate Robinson-Foulds distances between trees:
+**Calculate Robinson-Foulds distances between trees:**
+```bash
 Rscript compare_trees.R iqtree_protein.treefile raxml_protein.bestTree astral_species_tree.tre
+```
 
-Compare support values across methods:
-- Bootstrap support (IQ-TREE, RAxML-NG): ≥95% = strong support
-- Local posterior probabilities (ASTRAL): ≥0.95 = strong support
-- Identify conflicting nodes between concatenation and coalescent approaches
+Compare support values across methods:  
+- Bootstrap support (IQ-TREE, RAxML-NG): ≥95% = strong support  
+- Local posterior probabilities (ASTRAL): ≥0.95 = strong support  
+- Identify conflicting nodes between concatenation and coalescent approaches 
 
 
 STEP 7: HPC OPTIMIZATION & RUNTIME REDUCTION
