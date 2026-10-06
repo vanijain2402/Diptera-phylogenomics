@@ -191,7 +191,7 @@ KEY RESULTS
 ===========
 
 Phylogenetic Topology:
-- Resolved relationships among major Diptera clades
+- Resolved relationships among major Diptera clades with a ((Drosophilidae, Calyptratae), Tephritidae)) configuration
 - Evaluated support for competing hypotheses
 - Identified nodes with strong vs weak support across methods
 
